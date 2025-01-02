@@ -1,0 +1,136 @@
+@import url('https://fonts.googleapis.com/css2?family=Afacad+Flux:wght@100..1000&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+body {
+    font-family: "Afacad Flux", serif;
+}
+
+nav .container{
+    display: flex;
+    justify-content: space-between;
+}
+
+.source-code {
+    display: flex;
+}
+
+nav {
+    background-color: #ff240c35;
+}
+
+nav p{
+    padding-top: 1rem;
+    padding-right: .5rem;
+}
+
+.source-code a{
+    padding-top: .85rem;
+}
+
+:root {
+    --primary-color: #ff240c;
+    --primary-text: #000;
+    --primary-btn: #fff;
+}
+
+textarea {
+    width: 100%;
+}
+
+textarea::-webkit-scrollbar{
+    display: none;
+}
+
+.create-btn {
+    background-color: var(--primary-color);
+    border: none;
+    color: var(--primary-btn);
+    padding: .3rem 2rem;
+    margin-bottom: 1rem;
+    cursor: pointer;
+}
+
+.save.btn {
+    margin-top: -5px;
+}
+
+.tools {
+    display: flex;
+    justify-content: space-between;
+    padding: 0rem 1rem;
+}
+
+.achive img {
+    padding-right: .3rem;
+}
+
+.note {
+    border: 1px solid rgba(128, 128, 128, 0.626);
+}
+
+.note input {
+    width: 100%;
+    border: none;
+    outline: none;
+}
+
+.input {
+    display: flex;
+    justify-content: space-between;
+    padding: .3rem 1rem;
+}
+
+.hide {
+    display: none;
+}
+
+.error {
+    font-weight: 400;
+    color: #ff5945;
+    text-align: center;
+}
+
+.achieve-container {
+    margin-top: 10rem;
+    margin-bottom: 4rem;
+}
+
+.bordercontainer,
+.bordercontainer2 {
+    border: 1px solid rgba(128, 128, 128, 0.653);
+    padding: 1.5rem;
+    border-radius: 1rem;
+}
+
+.bordercontainer,
+.bordercontainer2 {
+    margin-top: 2rem;
+    position: relative;
+}
+
+.note-keeper {
+    margin-top: 5rem;
+}
+
+textarea {
+    height: 38px;
+    padding: .5rem 1rem;
+    outline: none;
+    border: none;
+}
+
+.bordercontainer svg,
+.bordercontainer2 svg {
+    position: absolute;
+    top: -14px;
+    right: 20px;
+    border: none;
+    outline: none;
+    background-color: transparent;
+}
+
+
+@media screen and (min-width: 770px) {
+    .container{
+        width: 500px;
+    }
+    
+}

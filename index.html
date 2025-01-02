@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Note App</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <p>Note.Keeper()</p>
+        <div class="source-code">
+            <p>Source Code</p>
+            <a href="https://github.com/Francis-Okorie/NoteKeeper"><img src="images/github.svg" alt=""></a>
+        </div>
+        </div>
+    </nav>
+    
+    <div class="container">
+        
+        <div class="note-keeper">
+            <div class="note-keeper-header">
+                <h1>Note Keeper</h1>
+            </div>
+            <div class="create-note">
+                <button class="create-btn">Create a Note</button>
+            </div>
+            <div class="note hide" >
+                <div class="input">
+                    <input class="inputheader" type="text" placeholder="Title">
+                    <img src="images/pin.svg" alt="">
+                </div> 
+                <textarea name="notetext" id="note-text" class="hide" placeholder="Keep a Note..."></textarea>
+                <div class="tools">
+                    <div class="achive ">
+                        <img src="images/archive.svg" alt=""><span class="achive-text">Archive</span>
+                    </div>
+                    <p class="save-note">Save Note</p>
+                </div>
+                
+            </div>
+            <p class="error hide">Error</p>
+
+            
+
+            <!--<img class="bin" src="images/trash3-fill.svg" alt="">-->
+            <div class="store " style="margin-top: 6rem;"> 
+                
+            </div>
+        </div>
+
+        <div class="achieve-container">
+            <h6 class="achieve-container-header" style="text-align: center;">Your Archive</h6>
+            <div class="achive-textcontent hide">
+                
+            </div>
+        </div>
+    </div>
+
+
+    <script src="script.js"></script>
+</body>
+</html>
