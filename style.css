@@ -98,6 +98,8 @@ textarea::-webkit-scrollbar{
     border: 1px solid rgba(128, 128, 128, 0.653);
     padding: 1.5rem;
     border-radius: 1rem;
+    width: 100%;
+    word-wrap: break-word;
 }
 
 .bordercontainer,
