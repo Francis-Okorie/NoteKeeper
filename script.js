@@ -14,6 +14,7 @@ const achiveTextCon = document.querySelector(".achive-textcontent");
 const errorText = document.querySelector(".error");
 const border = document.querySelector(".border");
 const deleteBin = document.querySelectorAll(".bin");
+const borderContainerElement = document.querySelector(".bordercontainer");
 
 const inputHeader = document.querySelector(".inputheader");
 achiveContainerHeader.style.fontWeight="300";
@@ -21,7 +22,6 @@ achiveContainerHeader.style.fontWeight="300";
 let saved =[];
 
 
-window.addEventListener("load", loadFromLocalstorage);
 
 createBtn.addEventListener("click", handleTextArea);
 
@@ -55,12 +55,10 @@ saveNote.addEventListener("click", ()=>{
     borderCon.setAttribute("class", "bordercontainer");
     let storeHeader = document.createElement("h1");
     storeHeader.innerHTML = inputHeader.value;
-    let deleteBtn = document.createElement("button");
+    let deleteBtn = document.createElement("img");
     deleteBtn.setAttribute("class", "delete-btn");
 
-    deleteBtn.innerHTML =`<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="#ff5945" class="bi bi-trash-fill" viewBox="0 0 16 16">
-    <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0"/>
-    </svg>`
+    deleteBtn.src ="images/trash3-fill.svg";
     
 
     let storeText = document.createElement("p");
@@ -70,37 +68,21 @@ saveNote.addEventListener("click", ()=>{
     borderCon.appendChild(deleteBtn);
     store.appendChild(borderCon);
 
-    deleteBtn.addEventListener("click", ()=>{
-        const parentElement = deleteBtn.parentElement;
-        parentElement.remove();
-        saveToLocalstorage()
-        
+    deleteBtn.addEventListener("click", (e)=>{
+        if(e.target.tagName === "IMG"){
+           e.target.parentElement.remove(); 
+           updateLocalStorage() 
+        }
         
     });
 
-     
-    saveToLocalstorage()
-    
+    updateLocalStorage()
     inputHeader.value = ""; 
     noteText.value = "";
     }
 });
 
-function updateSavedItem(){
-    const notes = store.querySelectorAll(".bordercontainer");
-    notes.forEach(notee =>{
-        const header = notee.querySelector("h1").innerHTML;
-        const text = notee.querySelector("p").innerHTML;
 
-        saved.push({
-            header:header,
-            text:text
-        })
-    });
-
-    console.log(saved.header)
-    
-}
 
 
 achiveBtn.addEventListener("click", ()=>{
@@ -123,12 +105,11 @@ achiveBtn.addEventListener("click", ()=>{
     let storeText = document.createElement("p");
     storeText.innerText = noteText.value;
     achiveTextCon.appendChild(storeText);
-    let deleteBtn = document.createElement("button");
+    let deleteBtn = document.createElement("img");
     deleteBtn.setAttribute("class", "delete-btn");
 
-    deleteBtn.innerHTML =`<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="#ff5945" class="bi bi-trash-fill" viewBox="0 0 16 16">
-    <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0"/>
-    </svg>`
+    deleteBtn.src ="images/trash3-fill.svg";
+    
 
     borderCon.appendChild(storeHeader);
     borderCon.appendChild(storeText);
@@ -137,126 +118,81 @@ achiveBtn.addEventListener("click", ()=>{
     achiveTextCon.appendChild(borderCon);
     
 
-    
-
-    deleteBtn.addEventListener("click", ()=>{
-        const parentElement = deleteBtn.parentElement;
-        parentElement.remove();
-        achieveValueLength();
-        saveToLocalstorage()
-        
+    deleteBtn.addEventListener("click", (e)=>{
+        if(e.target.tagName === "IMG"){
+            e.target.parentElement.remove();
+            saveAchive()
+        }
     });
 
     achieveValueLength();
 
-    saveToLocalstorage()
+    
 
-
+    saveAchive()
     inputHeader.value = ""; 
     noteText.value = "";
 
-    
-
-
-
     }
-
-    
     
 });
 
 function achieveValueLength(){
     let achiveLength = document.querySelectorAll(".bordercontainer2").length;
     console.log(achiveLength);
-    
-
+    let acrhiveContainerNew = document.querySelector(".achieve-container-header");
+    acrhiveContainerNew.innerHTML=`Your Archive (${achiveLength})`
 }
 
 
 
 achiveContainerHeader.addEventListener("click", ()=>{
     achiveTextCon.classList.toggle("hide");
-    
-    
 });
 
-
-function saveToLocalstorage() {
-    const savedStoreElement = [];
-    const savedAchiveElement = [];
-
-    document.querySelectorAll(".bordercontainer").forEach(item => {
-        const header = item.querySelector("h1")?.innerText || "";
-        const text = item.querySelector("p")?.innerText || "";
-        
-
-
-        savedStoreElement.push({ header, text});
-    });
-
-    document.querySelectorAll(".bordercontainer2").forEach(item => {
-        const header = item.querySelector("h1")?.innerText || "";
-        const text = item.querySelector("p")?.innerText || "";
-        
-
-       
-
-        savedAchiveElement.push({ header, text});
-    });
-
-    localStorage.setItem("storeitem", JSON.stringify(savedStoreElement));
-    localStorage.setItem("achiveitem", JSON.stringify(savedAchiveElement));
+function updateLocalStorage(){
+    localStorage.setItem("archive1", store.innerHTML)
 }
 
-
-
-function loadFromLocalstorage() {
-    const storeData = JSON.parse(localStorage.getItem("storeitem")) || [];
-    const achiveData = JSON.parse(localStorage.getItem("achiveitem")) || [];
-
-    store.innerHTML = ""; // Clear existing elements
-    achiveTextCon.innerHTML = "";
-
-    storeData.forEach(note => {
-        const borderCon = document.createElement("div");
-        borderCon.setAttribute("class", "bordercontainer");
-
-        const storeHeader = document.createElement("h1");
-        storeHeader.innerText = note.header;
-
-        const storeText = document.createElement("p");
-        storeText.innerText = note.text;
-
-        borderCon.appendChild(storeHeader);
-        borderCon.appendChild(storeText);
-
-        
-
-        store.appendChild(borderCon);
+function showUpdateStorage(){
+    const savedData = localStorage.getItem("archive1");
+    if (savedData) store.innerHTML = savedData;
+    const deleteButtons = store.querySelectorAll(".delete-btn");
+    deleteButtons.forEach(deleteBtn =>{
+        deleteBtn.addEventListener("click", (e)=>{
+            if(e.target.tagName === "IMG"){
+               e.target.parentElement.remove(); 
+               updateLocalStorage() 
+            }
+            
+        });
     });
+    
+}
 
-    achiveData.forEach(note => {
-        const borderCon = document.createElement("div");
-        borderCon.setAttribute("class", "bordercontainer2");
+function saveAchive(){
+    localStorage.setItem("acrhive2", achiveTextCon.innerHTML);
+}
 
-        const storeHeader = document.createElement("h1");
-        storeHeader.innerText = note.header;
-
-        const storeText = document.createElement("p");
-        storeText.innerText = note.text;
-
-        borderCon.appendChild(storeHeader);
-        borderCon.appendChild(storeText);
-
-       
-
-        achiveTextCon.appendChild(borderCon);
-
-        
-        achiveContainerHeader.innerHTML= `Your Achive (${achiveData.length})`
-
+function showAchive(){
+    const savedData = localStorage.getItem("acrhive2");
+    if(savedData) achiveTextCon.innerHTML = savedData;
+    const deleteButtons = achiveTextCon.querySelectorAll(".delete-btn");
+    deleteButtons.forEach(deleteBtn =>{
+        deleteBtn.addEventListener("click", (e)=>{
+            if(e.target.tagName === "IMG"){
+                e.target.parentElement.remove();
+                saveAchive()
+            }
+        });
     });
 }
+
+showUpdateStorage();
+showAchive();
+
+
+
 
 
 
